@@ -6,13 +6,13 @@ const NavBar = ({left, right, center, bgColor, customStyles}) => {
     <View
       style={{
         ...styles.navbar,
-        backgroundColor: bgColor ? bgColor : '#333333',
         ...customStyles,
       }}>
-      <View style={{...styles.navbarItem, alignItems: 'flex-start'}}>
+      <View
+        style={{...styles.navbarItem, alignItems: 'flex-start', width: '10%'}}>
         {left ? left : null}
       </View>
-      <View style={{...styles.navbarItem, alignItems: 'center'}}>
+      <View style={{...styles.navbarItem, alignItems: 'flex-start'}}>
         {center ? center : null}
       </View>
       <View style={{...styles.navbarItem, alignItems: 'flex-end'}}>
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     alignItems: 'center',
+    backgroundColor: '#FDFDFD',
   },
   navbarItem: {
     width: '33.33%',

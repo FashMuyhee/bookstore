@@ -17,9 +17,8 @@ export default Container;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    paddingLeft: '7%',
-    paddingRight: '7%',
+    backgroundColor: '#FDFDFD',
+    paddingHorizontal: '7%',
     justifyContent: 'flex-start',
     height: '100%',
     width: '100%',

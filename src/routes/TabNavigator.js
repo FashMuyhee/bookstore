@@ -13,21 +13,20 @@ const TabNavigator = ({theme}) => {
       initialRouteName="home"
       tabBarOptions={{
         showLabel: false,
-        activeTintColor: Colors.red700,
-        inactiveTintColor: colors.light,
-        activeBackgroundColor: colors.otherBlack,
+        activeTintColor: Colors.black,
+        inactiveTintColor: colors.grey,
         style: {
           backgroundColor: 'white',
           width: '90%',
           position: 'absolute',
-          bottom: '1%',
+          bottom: '5%',
           left: '5%',
           right: '5%',
           height: '10%',
           borderRadius: 18,
           elevation: 1,
           borderTopWidth: 0,
-          opacity: 0.8,
+          // opacity: 0.8,
         },
         tabStyle: {
           borderRadius: 50,
