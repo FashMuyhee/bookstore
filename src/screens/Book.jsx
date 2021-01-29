@@ -42,7 +42,11 @@ const Book = ({route, navigation}) => {
 
   return (
     <>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar
+        backgroundColor="#FDFDFD"
+        barStyle="dark-content"
+        translucent={false}
+      />
 
       <View style={styles.navBar}>
         <NavBar

@@ -119,7 +119,7 @@ const Login = ({navigation}) => {
 
   return (
     <Container style={{paddingLeft: 0, paddingRight: 0}}>
-      <StatusBar hidden={true} />
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <ImageBackground
         source={loginBg}
         style={styles.loginBg}
