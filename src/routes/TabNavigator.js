@@ -33,7 +33,7 @@ const TabNavigator = ({theme}) => {
         },
       }}>
       <Tab.Screen
-        name="home"
+        name="school"
         component={Home}
         options={{
           tabBarIcon: ({color}) => (

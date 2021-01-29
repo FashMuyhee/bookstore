@@ -5,10 +5,13 @@ import {
 } from '@react-navigation/stack';
 import {Login, Book} from '../screens';
 import TabNavigator from './TabNavigator';
+import {Context} from '../store/context';
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
+  const [state] = useContext(Context);
+
   return (
     <Stack.Navigator
       headerMode="none"
@@ -17,8 +20,8 @@ const StackNavigator = () => {
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
       <Stack.Screen name="home" component={TabNavigator} />
-      <Stack.Screen name="login" component={Login} />
       <Stack.Screen name="book" component={Book} />
+      <Stack.Screen name="login" component={Login} />
     </Stack.Navigator>
   );
 };
