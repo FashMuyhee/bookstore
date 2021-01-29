@@ -1,18 +1,122 @@
-import React from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {
   StyleSheet,
   View,
   StatusBar,
   ImageBackground,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import {Text, Button} from 'react-native-paper';
 import {Container, Input} from '../components';
 import loginBg from '../assets/img/login_bg.png';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {RNLocalAuthenticate} from 'react-native-local-authenticate';
+import {Context} from '../store/context';
+import {login, biometricService, getCredential} from '../helpers/auth';
+import Snackbar from 'react-native-snackbar';
 
 const Login = ({navigation}) => {
+  const [error, setError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [pwdVisible, setPwdVisible] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [state, setState] = useContext(Context);
+
+  useEffect(() => {
+    handleBiometric();
+  }, []);
+
+  const handleBiometric = () => {
+    biometricService()
+      .then((data) => {
+        getCredential().then((d) => {
+          setLoading(true);
+
+          login(d.username, d.password)
+          .then((data) => {
+              setTimeout(() => {
+                setLoading(false);
+                navigation.navigate('home');
+              }, 2500);
+              Snackbar.show({
+                text: data.message.toUpperCase(),
+                duration: Snackbar.LENGTH_SHORT,
+                textColor: 'green',
+                action: {
+                  text: 'ok',
+                  textColor: 'green',
+                  onPress: () => {
+                    Snackbar.dismiss();
+                  },
+                },
+              });
+            })
+            .catch((error) => {
+              setLoading(false);
+              console.log(error);
+            });
+        });
+      })
+      .catch((error) => {
+        setLoading(false);
+
+        Snackbar.show({
+          text: error.error.toUpperCase(),
+          duration: Snackbar.LENGTH_SHORT,
+          textColor: 'red',
+          action: {
+            text: 'ok',
+            textColor: 'red',
+            onPress: () => {
+              Snackbar.dismiss();
+            },
+          },
+        });
+      });
+  };
+
+  const handleLogin = () => {
+    setLoading(true);
+    login(email, password)
+      .then((data) => {
+        setTimeout(() => {
+          setLoading(false);
+          navigation.navigate('home');
+        }, 2500);
+        Snackbar.show({
+          text: data.message.toUpperCase(),
+          duration: Snackbar.LENGTH_SHORT,
+          textColor: 'green',
+          action: {
+            text: 'ok',
+            textColor: 'green',
+            onPress: () => {
+              Snackbar.dismiss();
+            },
+          },
+        });
+      })
+      .catch((error) => {
+        setLoading(false);
+
+        Snackbar.show({
+          text: error.error.toUpperCase(),
+          duration: Snackbar.LENGTH_SHORT,
+          textColor: 'red',
+          action: {
+            text: 'ok',
+            textColor: 'red',
+            onPress: () => {
+              Snackbar.dismiss();
+            },
+          },
+        });
+      });
+  };
+
   return (
     <Container style={{paddingLeft: 0, paddingRight: 0}}>
       <StatusBar hidden={true} />
@@ -43,28 +147,41 @@ const Login = ({navigation}) => {
               placeholder="Email"
               autoCompleteType="email"
               keyboardType="email-address"
+              onChangeText={(email) => setEmail(email)}
+              returnKeyType="next"
             />
             <View style={styles.passwordText}>
-              <Input placeholder="Password" secureTextEntry />
+              <Input
+                placeholder="Password"
+                secureTextEntry={pwdVisible}
+                onChangeText={(password) => setPassword(password)}
+                returnKeyType="done"
+              />
               <FeatherIcon
-                name="eye"
+                name={pwdVisible ? 'eye' : 'eye-off'}
                 color="#828285"
                 size={20}
                 style={styles.eyeIcon}
+                onPress={() => setPwdVisible(!pwdVisible)}
               />
             </View>
             <Button
+              loading={loading}
               accessibilityLabel="Login button"
               mode="contained"
               style={styles.button}
-              onPress={() => navigation.navigate('home')}>
-              <Text style={styles.buttonText}>Sign in</Text>
+              onPress={handleLogin}
+              disabled={loading}>
+              <Text style={styles.buttonText}>
+                {loading ? 'Signing in...' : 'Sign in'}
+              </Text>
             </Button>
           </KeyboardAvoidingView>
           <MaterialIcon
             name="fingerprint"
             size={35}
             style={styles.thumbPrint}
+            onPress={handleBiometric}
           />
         </View>
       </ImageBackground>
