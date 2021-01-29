@@ -7,9 +7,9 @@ import {
   Image,
 } from 'react-native';
 import {Text} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
 import {Rating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
+import bookmark from '../assets/img/bookmark-2.png';
 
 const BookList = ({data}) => {
   const navigation = useNavigation();
@@ -54,7 +54,7 @@ const BookList = ({data}) => {
                 </View>
               </View>
               <View>
-                <Icon name="bookmark" size={20} />
+                <Image source={bookmark} />
               </View>
             </View>
           </TouchableWithoutFeedback>
