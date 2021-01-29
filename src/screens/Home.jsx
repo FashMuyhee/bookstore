@@ -1,29 +1,55 @@
-import React from 'react';
-import {StyleSheet, Image, View, StatusBar} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {
+  StyleSheet,
+  Image,
+  View,
+  StatusBar,
+} from 'react-native';
 import {NavBar, ScrollContainer, BookCard, BookList} from '../components';
 import user from '../assets/img/user.png';
 import Icon from 'react-native-vector-icons/Feather';
-import {Text, Title} from 'react-native-paper';
-import book_1 from '../assets/img/book_1.png';
-import book_2 from '../assets/img/book_2.png';
-import book_3 from '../assets/img/book_3.png';
+import {Text} from 'react-native-paper';
+import axios from 'axios';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import {Context} from '../store/context';
 
 const Home = () => {
-  const [state, setstate] = React.useState([
-    {title: 'Movie 1', id: 1, img: book_1, author: 'Feddrick Ben'},
-    {title: 'Movie 2', id: 2, img: book_2, author: 'Elon Musk'},
-    {title: 'Movie 3', id: 3, img: book_3, author: 'Ali baba'},
-  ]);
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [state] = useContext(Context);
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const fetchBooks = () => {
+    setLoading(true);
+    axios
+      .get('https://api.itbook.store/1.0/new')
+      .then((res) => {
+        setLoading(false);
+        setBooks(res.data.books);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(true);
+      });
+  };
+
   return (
     <>
-          <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
 
       <View style={styles.navBar}>
         <NavBar
           bgColor="white"
           left={<Image source={user} style={styles.avatar} />}
           center={
-            <Text style={{fontSize: 20, fontWeight: '600'}}>Hi Dustin!</Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: '600',
+              }}>{`Hi ${state.user}!`}</Text>
           }
           right={<Icon name="search" color="black" size={30} />}
         />
@@ -31,11 +57,42 @@ const Home = () => {
       <ScrollContainer>
         <View style={styles.bookContainer}>
           <Text style={styles.title}>Popular Books </Text>
-          <BookCard data={state} />
+          {loading ? (
+            <SkeletonPlaceholder>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={styles.cardPlaceholderContainer}>
+                  <View style={styles.cardPlaceholderItem1} />
+                  <View style={styles.cardPlaceholderItem2} />
+                </View>
+                <View style={styles.cardPlaceholderContainer}>
+                  <View style={styles.cardPlaceholderItem1} />
+                  <View style={styles.cardPlaceholderItem2} />
+                </View>
+              </View>
+            </SkeletonPlaceholder>
+          ) : (
+            <BookCard data={books} />
+          )}
         </View>
-        <View style={{...styles.bookContainer, height: '50%'}}>
+        <View style={{...styles.bookContainer, height: '100%'}}>
           <Text style={styles.title}>Newest </Text>
-          <BookList data={state} />
+          {loading ? (
+            <SkeletonPlaceholder>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={styles.listPlaceholderContainer}>
+                  <View style={styles.listPlaceholderItem1} />
+                  <View>
+                    <View style={styles.listPlaceholderItem2} />
+                    <View style={styles.listPlaceholderItem2} />
+                  </View>
+                </View>
+              </View>
+            </SkeletonPlaceholder>
+          ) : (
+            <BookList data={books} />
+          )}
         </View>
       </ScrollContainer>
     </>
@@ -57,5 +114,35 @@ const styles = StyleSheet.create({
   navBar: {
     padding: 20,
     backgroundColor: '#FDFDFD',
+  },
+  cardPlaceholderContainer: {
+    height: '90%',
+    width: '50%',
+    flexDirection: 'column',
+  },
+  cardPlaceholderItem1: {
+    width: 170,
+    height: 200,
+    marginBottom: 10,
+  },
+  cardPlaceholderItem2: {
+    width: 170,
+    height: 20,
+  },
+  listPlaceholderContainer: {
+    height: 130,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  listPlaceholderItem1: {
+    width: 130,
+    height: 200,
+  },
+  listPlaceholderItem2: {
+    width: 250,
+    height: 20,
+    marginVertical: 10,
   },
 });

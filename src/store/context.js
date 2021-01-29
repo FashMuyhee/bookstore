@@ -3,7 +3,6 @@ export const Context = createContext();
 
 export const ContextProvider = (props) => {
   const [state, setState] = useState({
-    isLogin: false,
     user: 'David Chris',
   });
 
