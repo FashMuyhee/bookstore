@@ -8,6 +8,12 @@ target 'bookstore' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
+  pod 'RNLocalAuthenticate', :path => '../node_modules/react-native-local-authenticate'
+
+  pod 'RNSnackbar', :path => '../node_modules/react-native-snackbar'
+
   target 'bookstoreTests' do
     inherit! :complete
     # Pods for testing

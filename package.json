@@ -11,6 +11,7 @@
     "adb-connect": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.3",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.7",
     "@react-navigation/native": "^5.9.2",
@@ -20,11 +21,14 @@
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.9.0",
     "react-native-keychain": "^6.2.0",
+    "react-native-local-authenticate": "^1.0.1",
     "react-native-paper": "^4.7.1",
     "react-native-ratings": "^7.3.0",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.17.1",
+    "react-native-skeleton-placeholder": "^3.0.2",
+    "react-native-snackbar": "^2.3.2",
     "react-native-touch-id": "^4.4.1",
     "react-native-vector-icons": "^8.0.0"
   },

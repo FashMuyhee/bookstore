@@ -1005,6 +1005,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@react-native-async-storage/async-storage@^1.13.3":
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.13.3.tgz#bba0c69541de4da12f3a47fe07698fda84b16135"
+  integrity sha512-s/7KyzFxS3WesYn5RrfRg1Pyz5EYDZAJxIxIuzmJZ1FlvpvaZGAZq9xJmVN2OG6S6NhfiY8Tszkau15hHreRag==
+  dependencies:
+    deep-assign "^3.0.0"
+
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -2406,6 +2413,13 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+deep-assign@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/deep-assign/-/deep-assign-3.0.0.tgz#c8e4c4d401cba25550a2f0f486a2e75bc5f219a2"
+  integrity sha512-YX2i9XjJ7h5q/aQ/IM9PEwEnDqETAIYbggmdDB3HLTlSgo1CxPsj6pvhPG68rq6SVE0+p+6Ywsm5fTYNrYtBWw==
+  dependencies:
+    is-obj "^1.0.0"
+
 deep-is@^0.1.3, deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
@@ -3726,6 +3740,11 @@ is-number@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
+
+is-obj@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
+  integrity sha1-PkcprB9f3gJc19g6iW2rn09n2w8=
 
 is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   version "2.0.4"
@@ -5852,6 +5871,11 @@ react-native-keychain@^6.2.0:
   resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-6.2.0.tgz#8f4cff503aad367141db5aea0189ead9240c28ff"
   integrity sha512-U6fnOQRJPq+c0Abl+FoYy9v0H3kQU587tMamU/o+MoBSUScFLE3DQpkyT1PW4NF5IObgiGuqQdmjC2KgtBpjGA==
 
+react-native-local-authenticate@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-local-authenticate/-/react-native-local-authenticate-1.0.1.tgz#4249a8ba3331a4f1b4ca14fa0d2aad3b6c69ce8d"
+  integrity sha512-6ll/7XAUDljdVjPKQLZHsY0CZ/GAORbpxTaV3MImBwgmRPzSbOOyoX6DT6djqZQx7L+/EB0ebQ9P6sv3BNul1A==
+
 react-native-paper@^4.7.1:
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.7.1.tgz#9f22116d39e4a129be9fd4c8d7342d0f6a20245c"
@@ -5885,6 +5909,16 @@ react-native-screens@^2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.17.1.tgz#c3c0ac750af48741c5b1635511e6af2a27b74309"
   integrity sha512-B4gD5e4csvlVwlhf+RNqjQZ9mHTwe/iL3rXondgZxnKz4oW0QAmtLnLRKOrYVxoaJaF9Fy7jhjo//24/472APQ==
+
+react-native-skeleton-placeholder@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-skeleton-placeholder/-/react-native-skeleton-placeholder-3.0.2.tgz#6cd19035018a714b64a866a2f90ee98e2c56e212"
+  integrity sha512-JL6hfBBiJCbxFdb9/BXZGkJRG/O0stsjmkbLEd6k3blV76zZjueb8D8Nhu2EJRje8Nz/16k7mJtzuwTbTMR6Hg==
+
+react-native-snackbar@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-2.3.2.tgz#6846deff8707f49dd1ed3ee8cce2d6f525eb6629"
+  integrity sha512-0xqN15A4xUTR3k0/Fdj5zrLOUsLKoPNZB8iqv3/bvjP0lTgJiSRiaSa0ty/tD/lP8kQzek+ldCkjDHxDG2ZFuQ==
 
 react-native-touch-id@^4.4.1:
   version "4.4.1"
