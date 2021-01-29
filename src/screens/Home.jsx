@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
+import {StyleSheet, Image, View, StatusBar} from 'react-native';
 import {
-  StyleSheet,
-  Image,
-  View,
-  StatusBar,
-} from 'react-native';
-import {NavBar, ScrollContainer, BookCard, BookList} from '../components';
+  NavBar,
+  ScrollContainer,
+  BookCard,
+  BookList,
+  TabBar,
+} from '../components';
 import user from '../assets/img/user.png';
 import Icon from 'react-native-vector-icons/Feather';
 import {Text} from 'react-native-paper';
@@ -38,7 +39,11 @@ const Home = () => {
 
   return (
     <>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar
+        backgroundColor="#FDFDFD"
+        barStyle="dark-content"
+        translucent={false}
+      />
 
       <View style={styles.navBar}>
         <NavBar
@@ -95,6 +100,7 @@ const Home = () => {
           )}
         </View>
       </ScrollContainer>
+      <TabBar />
     </>
   );
 };
